@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XIPHIAS Citizenship Insider - Digital Digest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Sora:wght@300;400;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --clr-primary: #0f3a84;
+            --clr-primary-light: #1652b5;
+            --clr-accent: #eab308;
+            --clr-bg: #f8fafc;
+            --clr-surface: #ffffff;
+            --clr-text: #1e293b;
+            --clr-text-light: #64748b;
+            --clr-border: #e2e8f0;
+            --ff-heading: 'Sora', sans-serif;
+            --ff-body: 'Inter', sans-serif;
+            --ff-alt: 'Lato', sans-serif;
+        }
+
+        body {
+            font-family: var(--ff-body);
+            background-color: var(--clr-bg);
+            color: var(--clr-text);
+            margin: 0;
+            padding: 2rem 1rem;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .newsletter-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--clr-surface);
+            box-shadow: 0 10px 40px rgba(15, 58, 132, 0.08);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* Masthead */
+        .masthead {
+            background: var(--clr-primary);
+            color: #ffffff;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .masthead::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('assets/images/hero_bg.png') center/cover;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .masthead-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .brand {
+            font-family: var(--ff-heading);
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            border-bottom: 2px solid var(--clr-accent);
+            padding-bottom: 0.5rem;
+        }
+
+        .brand b { font-weight: 800; }
+
+        .newsletter-title {
+            font-family: var(--ff-heading);
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.2;
+        }
+        
+        .newsletter-subtitle {
+            color: var(--clr-accent);
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-top: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .newsletter-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+            background: #ffffff;
+            border-bottom: 1px solid var(--clr-border);
+            font-size: 0.85rem;
+            color: var(--clr-text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* Director's Note */
+        .directors-note {
+            padding: 3rem;
+            background: #fdfdfd;
+            border-bottom: 1px solid var(--clr-border);
+        }
+
+        .directors-note h2 {
+            font-family: var(--ff-heading);
+            color: var(--clr-primary);
+            font-size: 2rem;
+            margin-top: 0;
+        }
+        
+        .directors-note p {
+            font-size: 1.1rem;
+            color: #334155;
+            margin-bottom: 1.5rem;
+        }
+        
+        .signature {
+            font-family: var(--ff-alt);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--clr-primary);
+            font-weight: 700;
+            margin-top: 2rem;
+        }
+
+        /* Program Deep-Dives (Alternating) */
+        .deep-dives {
+            padding: 0;
+        }
+        
+        .program-block {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--clr-border);
+            background: #ffffff;
+        }
+        
+        .program-block.reverse {
+            flex-direction: row-reverse;
+            background: #f8fafc;
+        }
+        
+        .program-image {
+            flex: 1;
+            height: 400px;
+        }
+        
+        .program-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .program-content {
+            flex: 1.2;
+            padding: 3rem;
+        }
+
+        .program-tag {
+            color: var(--clr-accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .program-content h3 {
+            font-family: var(--ff-heading);
+            font-size: 2rem;
+            color: var(--clr-primary);
+            margin: 0 0 1rem 0;
+        }
+
+        .program-content p {
+            font-size: 1rem;
+            color: #334155;
+            margin-bottom: 1.5rem;
+        }
+        
+        .program-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem 0;
+        }
+        
+        .program-features li {
+            position: relative;
+            padding-left: 1.5rem;
+            font-weight: 500;
+            color: var(--clr-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .program-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--clr-accent);
+            font-weight: bold;
+        }
+        
+        .btn-outline {
+            display: inline-block;
+            border: 2px solid var(--clr-primary);
+            color: var(--clr-primary);
+            font-family: var(--ff-heading);
+            font-weight: 600;
+            text-decoration: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+        
+        .btn-outline:hover {
+            background: var(--clr-primary);
+            color: #ffffff;
+        }
+
+        /* Comparison Table Section */
+        .comparison-section {
+            padding: 4rem 3rem;
+            background: #ffffff;
+        }
+        
+        .comparison-section h2 {
+            font-family: var(--ff-heading);
+            color: var(--clr-primary);
+            font-size: 2.2rem;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 2rem;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        
+        th, td {
+            padding: 1.2rem;
+            border-bottom: 1px solid var(--clr-border);
+        }
+        
+        th {
+            background: var(--clr-bg);
+            color: var(--clr-primary);
+            font-family: var(--ff-heading);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        
+        tr:hover td {
+            background: #f8fafc;
+        }
+        
+        td {
+            color: #334155;
+            font-size: 0.95rem;
+            vertical-align: middle;
+        }
+        
+        td strong {
+            color: var(--clr-text);
+            display: block;
+            font-size: 1.05rem;
+            margin-bottom: 0.2rem;
+        }
+        
+        .highlight-cell {
+            background: rgba(234, 179, 8, 0.1);
+            color: var(--clr-primary);
+            font-weight: 600;
+        }
+
+        /* CTA Block */
+        .cta-block {
+            background: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-primary-light) 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .cta-block h2 {
+            font-family: var(--ff-heading);
+            font-size: 2rem;
+            margin: 0 0 1rem 0;
+        }
+
+        .cta-block p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            background: var(--clr-accent);
+            color: #ffffff;
+            font-family: var(--ff-heading);
+            font-weight: 700;
+            text-decoration: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+            box-shadow: 0 4px 15px rgba(234, 179, 8, 0.4);
+        }
+
+        .btn-cta:hover {
+            background: #ca8a04;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 3rem 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        .footer p { margin: 0.5rem 0; }
+
+        .back-nav {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .back-nav a {
+            color: var(--clr-primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .program-block, .program-block.reverse {
+                flex-direction: column;
+            }
+            .program-image {
+                width: 100%;
+                height: 250px;
+            }
+            .program-content {
+                padding: 2rem;
+            }
+            .newsletter-title {
+                font-size: 2.5rem;
+            }
+            .directors-note {
+                padding: 2rem;
+            }
+            .comparison-section {
+                padding: 2rem 1rem;
+            }
+            .newsletter-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="newsletter-container">
+        <!-- Masthead -->
+        <header class="masthead">
+            <div class="masthead-content">
+                <div class="brand"><b>XIPHIAS</b> Immigration</div>
+                <h1 class="newsletter-title">The Global Citizen Digest</h1>
+                <div class="newsletter-subtitle">Your Guide to Worldwide Investment Visas</div>
+            </div>
+        </header>
+
+        <!-- Meta info -->
+        <div class="newsletter-meta">
+            <span>Issue #42 &bull; Mid-Year 2026 Edition</span>
+            <span>Read Time: 6 Min</span>
+        </div>
+
+        <!-- Director's Note -->
+        <div class="directors-note">
+            <h2>The Evolving Landscape of Global Mobility</h2>
+            <p>Dear Valued Client,</p>
+            <p>As we navigate through 2026, the strategic importance of holding a second citizenship has never been more pronounced. Whether your goal is to secure a safe haven for your family, unlock borderless business opportunities, or achieve optimal tax structuring, Citizenship by Investment (CBI) programs remain the definitive solution.</p>
+            <p>Recently, we have witnessed a paradigm shift. Caribbean nations have implemented standardized pricing and enhanced due diligence, elevating the prestige of their passports. Meanwhile, strategic hubs like Turkey continue to offer lucrative real estate investment routes, and emerging programs in Vanuatu provide unprecedented speed.</p>
+            <p>In this digest, we explore the top programs that are shaping the future of global mobility. Our Private Client Advisory team at XIPHIAS is here to help you select the path that perfectly aligns with your legacy.</p>
+            <div class="signature">
+                — The XIPHIAS Private Client Advisory Team
+            </div>
+        </div>
+
+        <!-- Deep Dives -->
+        <div class="deep-dives">
+            
+            <!-- St. Kitts -->
+            <div class="program-block">
+                <div class="program-image">
+                    <img src="assets/images/st_kitts.png" alt="St. Kitts & Nevis">
+                </div>
+                <div class="program-content">
+                    <span class="program-tag">The Platinum Standard</span>
+                    <h3>St. Kitts & Nevis</h3>
+                    <p>Established in 1984, the St. Kitts and Nevis CBI program is the oldest and most trusted in the world. It offers a fast-track route to a powerful passport with excellent global reach.</p>
+                    <ul class="program-features">
+                        <li>Visa-free travel to 155+ countries, including the EU and UK</li>
+                        <li>No income, wealth, or inheritance taxes</li>
+                        <li>Confidential processing within 4-6 months</li>
+                    </ul>
+                    <a href="index.html#consultation" class="btn-outline">Inquire Now</a>
+                </div>
+            </div>
+
+            <!-- Grenada -->
+            <div class="program-block reverse">
+                <div class="program-image">
+                    <img src="assets/images/grenada.png" alt="Grenada">
+                </div>
+                <div class="program-content">
+                    <span class="program-tag">The E-2 Gateway</span>
+                    <h3>Grenada</h3>
+                    <p>Grenada stands out uniquely among its Caribbean peers. It not only provides a phenomenal passport but also holds a highly coveted E-2 Investor Visa treaty with the United States.</p>
+                    <ul class="program-features">
+                        <li>Direct pathway to US Residency via the E-2 Visa</li>
+                        <li>Visa-free access to China, Russia, and the EU</li>
+                        <li>Zero physical residency requirements</li>
+                    </ul>
+                    <a href="index.html#consultation" class="btn-outline">Inquire Now</a>
+                </div>
+            </div>
+            
+            <!-- Turkey -->
+            <div class="program-block">
+                <div class="program-image">
+                    <img src="assets/images/turkey.png" alt="Istanbul, Turkey">
+                </div>
+                <div class="program-content">
+                    <span class="program-tag">Strategic Real Estate</span>
+                    <h3>Turkey (Türkiye)</h3>
+                    <p>Turkey offers a unique blend of European and Asian lifestyles. Its CIP allows investors to acquire citizenship by purchasing real estate in one of the world's most dynamic property markets.</p>
+                    <ul class="program-features">
+                        <li>High ROI potential on Istanbul real estate</li>
+                        <li>Citizenship granted in just 3-5 months</li>
+                        <li>Access to a massive transcontinental market</li>
+                    </ul>
+                    <a href="index.html#consultation" class="btn-outline">Inquire Now</a>
+                </div>
+            </div>
+            
+            <!-- Vanuatu -->
+            <div class="program-block reverse">
+                <div class="program-image">
+                    <img src="assets/images/vanuatu.png" alt="Vanuatu">
+                </div>
+                <div class="program-content">
+                    <span class="program-tag">The Fastest Route</span>
+                    <h3>Vanuatu</h3>
+                    <p>For investors seeking speed and efficiency, the Vanuatu Development Support Program (VDSP) is unmatched, offering one of the fastest processing times globally.</p>
+                    <ul class="program-features">
+                        <li>Citizenship approval in as little as 1-2 months</li>
+                        <li>Tax-friendly environment with no personal taxation</li>
+                        <li>A beautiful, developing luxury tourism destination</li>
+                    </ul>
+                    <a href="index.html#consultation" class="btn-outline">Inquire Now</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="comparison-section">
+            <h2>Program Comparison Matrix</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program</th>
+                            <th>Min. Investment</th>
+                            <th>Processing Time</th>
+                            <th>Visa-Free Access</th>
+                            <th>Key Benefit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>St. Kitts & Nevis</strong></td>
+                            <td>$250,000 (Donation)</td>
+                            <td>4 - 6 Months</td>
+                            <td>155+ Countries</td>
+                            <td>The "Platinum Standard", high global trust</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Grenada</strong></td>
+                            <td>$235,000 (Donation)</td>
+                            <td>6 - 9 Months</td>
+                            <td>145+ Countries</td>
+                            <td class="highlight-cell">E-2 Visa Treaty with the USA</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Antigua & Barbuda</strong></td>
+                            <td>$230,000 (Donation)</td>
+                            <td>5 - 7 Months</td>
+                            <td>150+ Countries</td>
+                            <td>Most cost-effective for families (4+)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Turkey</strong></td>
+                            <td>$400,000 (Real Estate)</td>
+                            <td>3 - 5 Months</td>
+                            <td>110+ Countries</td>
+                            <td>Tangible ROI on booming real estate</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vanuatu</strong></td>
+                            <td>$130,000 (Donation)</td>
+                            <td class="highlight-cell">1 - 2 Months</td>
+                            <td>100+ Countries</td>
+                            <td>Fastest processing worldwide</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta-block">
+            <h2>Ready to Secure Your Legacy?</h2>
+            <p>Our advisors are on standby to provide a personalized, highly confidential assessment of which program aligns with your family's financial and lifestyle goals.</p>
+            <a href="index.html#consultation" class="btn-cta">Schedule a Strategy Call</a>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 XIPHIAS Immigration Pvt. Ltd. All rights reserved.</p>
+            <p>Global Headquarters: Business Bay, Dubai | Regional Offices: India, UK, Canada</p>
+            <p style="margin-top: 1.5rem;"><a href="#" style="color: #64748b; text-decoration: underline;">Update Preferences</a> | <a href="#" style="color: #64748b; text-decoration: underline;">Unsubscribe</a></p>
+        </footer>
+    </div>
+
+    <div class="back-nav">
+        <a href="index.html">&larr; Return to Main Landing Page</a>
+    </div>
+
+</body>
+</html>
